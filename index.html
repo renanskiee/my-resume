@@ -329,31 +329,6 @@
         .ios-tap:active {
             transform: scale(0.96);
         }
-
-        /* Clean Print / PDF Layout */
-        @media print {
-            body {
-                background: #ffffff !important;
-                color: #0f172a !important;
-            }
-            .bg-orb, .light-beam, .bg-watermark, .glass-sheen, .no-print {
-                display: none !important;
-            }
-            .ultra-glass, .glass-panel, .glass-pill {
-                background: #ffffff !important;
-                backdrop-filter: none !important;
-                border: 1px solid #cbd5e1 !important;
-                box-shadow: none !important;
-                transform: none !important;
-            }
-            .print-block {
-                display: block !important;
-            }
-            .print-break {
-                page-break-before: always;
-                margin-top: 2rem !important;
-            }
-        }
     </style>
 </head>
 <body class="antialiased selection:bg-slate-900/15 selection:text-slateInk">
@@ -380,42 +355,34 @@
     </div>
 
     <!-- Main Container -->
-    <main class="max-w-4xl mx-auto px-4 sm:px-6 pt-8 pb-16 relative z-10">
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10 pb-14 relative z-10">
 
         <!-- =================================================================
-             1. GLASS HEADER WITH PROFILE PHOTO FRAME & CONTACT PILLS
+             1. GLASS HEADER WITH STATIC PROFILE PHOTO FRAME & CONTACT PILLS
              ================================================================= -->
         <header class="ultra-glass rounded-[32px] p-6 sm:p-8 mb-6 spring-enter">
             <div class="glass-sheen"></div>
-            <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
                 
-                <!-- Left: Profile Photo Frame + Name & Title -->
-                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+                <!-- Left: Large Static Profile Photo Frame + Name & Title -->
+                <div class="flex flex-col sm:flex-row items-center sm:items-center text-center sm:text-left gap-5 sm:gap-6">
                     
-                    <!-- Interactive iOS Profile Photo Slot (Loads ./profile.jpg on GitHub or click to preview) -->
-                    <div class="relative group shrink-0">
-                        <input type="file" id="photo-upload-input" accept="image/*" class="hidden" onchange="previewProfilePhoto(event)">
-                        <button type="button" onclick="document.getElementById('photo-upload-input').click()" title="Click to preview your photo (Save as profile.jpg for GitHub)" class="w-24 h-24 sm:w-28 sm:h-28 rounded-[26px] glass-panel p-1.5 flex items-center justify-center overflow-hidden relative cursor-pointer ios-tap focus:outline-none">
-                            <!-- Automatically displays profile.jpg when placed in the same GitHub folder -->
-                            <img id="profile-photo-img" src="profile.jpg" alt="Renan Alburo" class="w-full h-full object-cover rounded-[20px]" onerror="this.style.display='none'; document.getElementById('photo-placeholder').style.display='flex';">
+                    <!-- Static iOS Profile Photo Frame (Only changeable via profile.jpg in GitHub) -->
+                    <div class="shrink-0">
+                        <div class="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 rounded-[28px] glass-panel p-2 flex items-center justify-center overflow-hidden relative shadow-lg">
+                            <!-- Automatically loads profile.jpg from your GitHub repository -->
+                            <img id="profile-photo-img" src="profile.jpg" alt="Renan Alburo" class="w-full h-full object-cover rounded-[22px]" onerror="this.style.display='none'; document.getElementById('photo-placeholder').style.display='flex';">
                             
-                            <!-- Fallback Placeholder if profile.jpg isn't added yet -->
-                            <div id="photo-placeholder" style="display:none;" class="w-full h-full rounded-[20px] bg-white/50 border border-dashed border-slate-400/70 flex flex-col items-center justify-center text-center p-2">
-                                <i class="fa-solid fa-camera text-slateInk text-lg mb-1"></i>
-                                <span class="text-[10px] font-bold text-slateInk leading-tight">Add Photo</span>
-                                <span class="text-[9px] text-slateSubtle leading-tight mt-0.5">profile.jpg</span>
+                            <!-- Clean Initials Monogram if profile.jpg isn't uploaded yet -->
+                            <div id="photo-placeholder" style="display:none;" class="w-full h-full rounded-[22px] bg-white/55 border border-white/80 flex flex-col items-center justify-center text-center p-2">
+                                <span class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slateInk">RA</span>
+                                <span class="text-[10px] font-semibold uppercase tracking-widest text-slateSubtle mt-1">Renan Alburo</span>
                             </div>
-
-                            <!-- Hover Overlay -->
-                            <div class="no-print absolute inset-1.5 rounded-[20px] bg-slate-900/55 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white">
-                                <i class="fa-solid fa-camera text-sm mb-1"></i>
-                                <span class="text-[10px] font-semibold">Change Photo</span>
-                            </div>
-                        </button>
+                        </div>
                     </div>
 
                     <!-- Name, Role & Location -->
-                    <div>
+                    <div class="flex flex-col items-center sm:items-start">
                         <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-pill text-xs font-semibold text-slateInk mb-2.5">
                             <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                             <span>Entry-Level Barista Applicant &bull; Eager to Train</span>
@@ -426,33 +393,27 @@
                         <p class="text-sm sm:text-base font-medium text-slateBody mt-1">
                             Aspiring Barista &amp; Hospitality Associate &bull; 4th Year Student, University of Nueva Caceres
                         </p>
-                        <p class="text-xs sm:text-sm text-slateSubtle mt-1.5 flex items-center gap-1.5">
+                        <p class="text-xs sm:text-sm text-slateSubtle mt-1.5 flex items-center justify-center sm:justify-start gap-1.5">
                             <i class="fa-solid fa-location-dot text-slateInk"></i>
                             <span>In front of Parochial School, Ateneo Ave., Naga City</span>
                         </p>
                     </div>
                 </div>
 
-                <!-- Right: Interactive Contact & Action Buttons -->
-                <div class="flex flex-col sm:flex-row md:flex-col items-stretch sm:items-center md:items-end gap-2.5 shrink-0">
-                    <a href="tel:09670492051" class="glass-pill px-4 py-2 rounded-2xl text-xs sm:text-sm font-semibold text-slateInk flex items-center justify-center md:justify-end gap-2">
+                <!-- Right: Interactive Contact Pills -->
+                <div class="flex flex-col sm:flex-row lg:flex-col items-stretch sm:items-center lg:items-end justify-center gap-2.5 shrink-0">
+                    <a href="tel:09670492051" class="glass-pill px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-semibold text-slateInk flex items-center justify-center lg:justify-end gap-2">
                         <i class="fa-solid fa-phone text-slateInk"></i>
                         <span>09670492051</span>
                     </a>
-                    <a href="mailto:renanalburo2004@gmail.com" class="glass-pill px-4 py-2 rounded-2xl text-xs sm:text-sm font-semibold text-slateInk flex items-center justify-center md:justify-end gap-2">
+                    <a href="mailto:renanalburo2004@gmail.com" class="glass-pill px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-semibold text-slateInk flex items-center justify-center lg:justify-end gap-2 break-all">
                         <i class="fa-solid fa-envelope text-slateInk"></i>
                         <span>renanalburo2004@gmail.com</span>
                     </a>
-                    <div class="no-print flex items-center gap-2 mt-0.5">
-                        <button type="button" onclick="copyContactInfo()" class="glass-pill px-3.5 py-2 rounded-xl text-xs font-semibold text-slateInk flex items-center gap-1.5 cursor-pointer">
-                            <i class="fa-regular fa-copy"></i>
-                            <span>Copy Info</span>
-                        </button>
-                        <button type="button" onclick="window.print()" class="ios-tap px-4 py-2 rounded-xl text-xs font-semibold text-white bg-slateInk hover:bg-slate-800 shadow-md flex items-center gap-1.5 cursor-pointer">
-                            <i class="fa-solid fa-print"></i>
-                            <span>Save PDF</span>
-                        </button>
-                    </div>
+                    <button type="button" onclick="copyContactInfo()" class="glass-pill px-4 py-2.5 rounded-2xl text-xs font-semibold text-slateInk flex items-center justify-center gap-1.5 cursor-pointer">
+                        <i class="fa-regular fa-copy"></i>
+                        <span>Copy Contact Info</span>
+                    </button>
                 </div>
 
             </div>
@@ -461,7 +422,7 @@
         <!-- =================================================================
              2. iOS SEGMENTED CONTROL (COVER LETTER FIRST -> RESUME DETAILS)
              ================================================================= -->
-        <nav class="no-print mb-6 flex justify-center">
+        <nav class="mb-6 flex justify-center">
             <div class="ios-segmented-track p-1 rounded-[19px] w-full max-w-md grid grid-cols-2">
                 <div id="segmented-thumb" class="ios-segmented-thumb"></div>
                 <button type="button" id="tab-letter" onclick="switchView('letter')" class="relative z-10 py-2.5 px-4 text-xs sm:text-sm font-bold text-slateInk flex items-center justify-center gap-2 cursor-pointer transition-colors">
@@ -478,7 +439,7 @@
         <!-- =================================================================
              3. SECTION 1: INTERACTIVE COVER LETTER (SHOWN FIRST)
              ================================================================= -->
-        <section id="view-letter" class="print-block ultra-glass rounded-[32px] p-6 sm:p-10 spring-enter">
+        <section id="view-letter" class="ultra-glass rounded-[32px] p-5 sm:p-10 spring-enter">
             <div class="glass-sheen"></div>
             <div class="relative z-10">
                 
@@ -488,29 +449,37 @@
                         <span class="text-[11px] font-bold uppercase tracking-widest text-slateSubtle">Application Letter</span>
                         <h2 class="text-xl sm:text-2xl font-extrabold text-slateInk mt-0.5">To the Hiring Manager &amp; Caf&eacute; Team</h2>
                     </div>
-                    <button type="button" onclick="copyCoverLetter()" class="no-print glass-pill px-4 py-2 rounded-2xl text-xs font-semibold text-slateInk flex items-center gap-2 cursor-pointer">
+                    <button type="button" onclick="copyCoverLetter()" class="glass-pill px-4 py-2 rounded-2xl text-xs font-semibold text-slateInk flex items-center gap-2 cursor-pointer">
                         <i class="fa-regular fa-clipboard"></i>
                         <span>Copy Letter</span>
                     </button>
                 </div>
 
                 <!-- Interactive Strength Spotlight Pills -->
-                <div class="no-print mb-6">
+                <div class="mb-6">
+                    <button type="button" onclick="copyCoverLetter()" class="glass-pill px-3.5 sm:px-4 py-2 rounded-2xl text-xs font-semibold text-slateInk flex items-center gap-2 cursor-pointer">
+                        <i class="fa-regular fa-clipboard"></i>
+                        <span>Copy Letter</span>
+                    </button>
+                </div>
+
+                <!-- Interactive Strength Spotlight Pills -->
+                <div class="mb-5 sm:mb-6">
                     <p class="text-xs font-semibold text-slateSubtle mb-2.5 flex items-center gap-1.5">
                         <i class="fa-solid fa-sparkles text-slateInk"></i>
                         <span>Tap a strength below to highlight it in my letter:</span>
                     </p>
                     <div class="flex flex-wrap gap-2">
-                        <button type="button" onclick="spotlightParagraph('hospitality', this)" class="spotlight-chip glass-pill px-3.5 py-1.5 rounded-full text-xs font-semibold text-slateInk cursor-pointer">
+                        <button type="button" onclick="spotlightParagraph('hospitality', this)" class="spotlight-chip glass-pill px-3 sm:px-3.5 py-2 rounded-full text-xs font-semibold text-slateInk cursor-pointer text-left">
                             <i class="fa-solid fa-heart mr-1"></i> Warm Hospitality &amp; Kindness
                         </button>
-                        <button type="button" onclick="spotlightParagraph('learning', this)" class="spotlight-chip glass-pill px-3.5 py-1.5 rounded-full text-xs font-semibold text-slateInk cursor-pointer">
+                        <button type="button" onclick="spotlightParagraph('learning', this)" class="spotlight-chip glass-pill px-3 sm:px-3.5 py-2 rounded-full text-xs font-semibold text-slateInk cursor-pointer text-left">
                             <i class="fa-solid fa-mug-hot mr-1"></i> Eager to Learn from Scratch
                         </button>
-                        <button type="button" onclick="spotlightParagraph('adaptability', this)" class="spotlight-chip glass-pill px-3.5 py-1.5 rounded-full text-xs font-semibold text-slateInk cursor-pointer">
+                        <button type="button" onclick="spotlightParagraph('adaptability', this)" class="spotlight-chip glass-pill px-3 sm:px-3.5 py-2 rounded-full text-xs font-semibold text-slateInk cursor-pointer text-left">
                             <i class="fa-solid fa-bolt mr-1"></i> Fast Adaptability &amp; Multitasking
                         </button>
-                        <button type="button" onclick="spotlightParagraph('communication', this)" class="spotlight-chip glass-pill px-3.5 py-1.5 rounded-full text-xs font-semibold text-slateInk cursor-pointer">
+                        <button type="button" onclick="spotlightParagraph('communication', this)" class="spotlight-chip glass-pill px-3 sm:px-3.5 py-2 rounded-full text-xs font-semibold text-slateInk cursor-pointer text-left">
                             <i class="fa-solid fa-comments mr-1"></i> Communication &amp; Negotiation
                         </button>
                     </div>
@@ -559,7 +528,7 @@
                 </div>
 
                 <!-- Bottom CTA Button to Resume Details -->
-                <div class="no-print mt-8 pt-6 border-t border-white/60 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="mt-8 pt-6 border-t border-white/60 flex flex-col sm:flex-row items-center justify-between gap-4">
                     <p class="text-xs text-slateSubtle text-center sm:text-left">
                         Ready to see my core strengths, education, and personal profile?
                     </p>
@@ -575,13 +544,13 @@
         <!-- =================================================================
              4. SECTION 2: RESUME DETAILS
              ================================================================= -->
-        <section id="view-resume" class="hidden print-block print-break space-y-6 spring-enter">
+        <section id="view-resume" class="hidden space-y-6 spring-enter">
             
             <!-- Personal Profile & Why Hire Me Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
                 
                 <!-- Personal Profile Card -->
-                <div class="ultra-glass rounded-[28px] p-6 sm:p-7">
+                <div class="ultra-glass rounded-[28px] p-5 sm:p-7">
                     <div class="glass-sheen"></div>
                     <div class="relative z-10">
                         <div class="flex items-center gap-3 mb-4">
@@ -642,11 +611,11 @@
             </div>
 
             <!-- Core Hospitality & Barista-Ready Strengths -->
-            <div class="ultra-glass rounded-[28px] p-6 sm:p-8">
+            <div class="ultra-glass rounded-[28px] p-5 sm:p-8">
                 <div class="glass-sheen"></div>
                 <div class="relative z-10">
                     <div class="flex items-center gap-3 mb-5">
-                        <div class="w-10 h-10 rounded-2xl glass-pill flex items-center justify-center text-slateInk">
+                        <div class="w-10 h-10 rounded-2xl glass-pill flex items-center justify-center text-slateInk shrink-0">
                             <i class="fa-solid fa-mug-saucer"></i>
                         </div>
                         <div>
@@ -655,7 +624,7 @@
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4">
                         <div class="glass-panel rounded-2xl p-4">
                             <div class="flex items-center gap-2.5 mb-2">
                                 <i class="fa-solid fa-face-smile text-slateInk"></i>
@@ -720,11 +689,11 @@
             </div>
 
             <!-- Education Card -->
-            <div class="ultra-glass rounded-[28px] p-6 sm:p-8">
+            <div class="ultra-glass rounded-[28px] p-5 sm:p-8">
                 <div class="glass-sheen"></div>
                 <div class="relative z-10">
                     <div class="flex items-center gap-3 mb-4">
-                        <div class="w-10 h-10 rounded-2xl glass-pill flex items-center justify-center text-slateInk">
+                        <div class="w-10 h-10 rounded-2xl glass-pill flex items-center justify-center text-slateInk shrink-0">
                             <i class="fa-solid fa-graduation-cap"></i>
                         </div>
                         <div>
@@ -733,10 +702,10 @@
                         </div>
                     </div>
 
-                    <div class="glass-panel rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div class="glass-panel rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                         <div>
-                            <h4 class="text-base font-extrabold text-slateInk">Bachelor of Science in Information Technology (4th Year)</h4>
-                            <p class="text-sm font-medium text-slateBody mt-0.5">University of Nueva Caceres &bull; Naga City, Camarines Sur</p>
+                            <h4 class="text-sm sm:text-base font-extrabold text-slateInk">Bachelor of Science in Information Technology (4th Year)</h4>
+                            <p class="text-xs sm:text-sm font-medium text-slateBody mt-0.5">University of Nueva Caceres &bull; Naga City, Camarines Sur</p>
                             <p class="text-xs text-slateSubtle mt-1">Light final-year academic load with no minor subjects remaining.</p>
                         </div>
                         <span class="glass-pill px-3.5 py-1.5 rounded-full text-xs font-bold text-slateInk self-start sm:self-center shrink-0">
@@ -747,27 +716,21 @@
             </div>
 
             <!-- Bottom Navigation Back to Cover Letter -->
-            <div class="no-print flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
-                <button type="button" onclick="switchView('letter')" class="glass-pill w-full sm:w-auto px-5 py-3 rounded-2xl text-xs sm:text-sm font-bold text-slateInk flex items-center justify-center gap-2 cursor-pointer">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2">
+                <button type="button" onclick="switchView('letter')" class="glass-pill w-full sm:w-auto px-6 py-3 rounded-2xl text-xs sm:text-sm font-bold text-slateInk flex items-center justify-center gap-2 cursor-pointer">
                     <i class="fa-solid fa-arrow-left"></i>
                     <span>Back to Cover Letter</span>
                 </button>
-                <div class="flex items-center gap-2.5 w-full sm:w-auto">
-                    <button type="button" onclick="copyContactInfo()" class="glass-pill flex-1 sm:flex-initial px-5 py-3 rounded-2xl text-xs sm:text-sm font-bold text-slateInk flex items-center justify-center gap-2 cursor-pointer">
-                        <i class="fa-regular fa-copy"></i>
-                        <span>Copy Contact</span>
-                    </button>
-                    <button type="button" onclick="window.print()" class="ios-tap flex-1 sm:flex-initial px-6 py-3 rounded-2xl text-xs sm:text-sm font-bold text-white bg-slateInk hover:bg-slate-800 shadow-lg flex items-center justify-center gap-2 cursor-pointer">
-                        <i class="fa-solid fa-file-pdf"></i>
-                        <span>Print / Save PDF</span>
-                    </button>
-                </div>
+                <button type="button" onclick="copyContactInfo()" class="ios-tap w-full sm:w-auto px-6 py-3 rounded-2xl text-xs sm:text-sm font-bold text-white bg-slateInk hover:bg-slate-800 shadow-lg flex items-center justify-center gap-2 cursor-pointer">
+                    <i class="fa-regular fa-copy"></i>
+                    <span>Copy Contact Details</span>
+                </button>
             </div>
 
         </section>
 
         <!-- Minimal Footer -->
-        <footer class="no-print mt-10 text-center text-xs text-slateSubtle">
+        <footer class="mt-10 text-center text-xs text-slateSubtle">
             <p>Renan Alburo &bull; Naga City &bull; Interactive Application &amp; Resume</p>
         </footer>
 
@@ -863,23 +826,7 @@
             document.getElementById('spotlight-banner').classList.add('hidden');
         }
 
-        // 4. Instant Profile Photo Preview (and auto-fallback if profile.jpg is uploaded on GitHub)
-        function previewProfilePhoto(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const img = document.getElementById('profile-photo-img');
-                const placeholder = document.getElementById('photo-placeholder');
-                img.src = e.target.result;
-                img.style.display = 'block';
-                placeholder.style.display = 'none';
-                showToast('Photo preview updated! Save as profile.jpg on GitHub.');
-            };
-            reader.readAsDataURL(file);
-        }
-
-        // 5. Copy Helpers + iOS Toast Notification
+        // 4. Copy Helpers + iOS Toast Notification
         let toastTimer = null;
         function showToast(message) {
             const toast = document.getElementById('ios-toast');
