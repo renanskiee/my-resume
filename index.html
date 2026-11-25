@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renan Alburo | Barista Application &amp; Resume</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Clean iOS-Inspired Sans-Serif Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Inter"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        display: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                    },
+                    colors: {
+                        slateInk: '#0F172A',
+                        slateBody: '#334155',
+                        slateSubtle: '#475569',
+                        espressoAccent: '#0F172A',
+                        caramelWarm: '#334155'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* =====================================================================
+           SINGLE-COLOR COOL SILVER-MIST BACKDROP (#DCE1E9)
+           ===================================================================== */
+        body {
+            background-color: #DCE1E9;
+            background-image: radial-gradient(rgba(15, 23, 42, 0.08) 1px, transparent 1px);
+            background-size: 24px 24px;
+            color: #0F172A;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        /* Large Faint Background Typography Refracted Through Frosted Glass */
+        .bg-watermark {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -3;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 3vh 2vw;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        .bg-watermark span {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 800;
+            font-size: clamp(3.5rem, 11vw, 9.5rem);
+            line-height: 0.92;
+            letter-spacing: -0.04em;
+            color: rgba(71, 85, 105, 0.13);
+            white-space: nowrap;
+        }
+
+        /* Crisp White Specular Light Beams */
+        .light-beam {
+            position: fixed;
+            pointer-events: none;
+            z-index: -2;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.78) 0%, rgba(255, 255, 255, 0) 100%);
+            transform: rotate(-26deg);
+            filter: blur(22px);
+        }
+
+        .beam-1 {
+            width: 300px;
+            height: 150vh;
+            top: -25vh;
+            left: 16%;
+        }
+
+        .beam-2 {
+            width: 220px;
+            height: 150vh;
+            top: -20vh;
+            right: 20%;
+            opacity: 0.75;
+        }
+
+        /* High-Contrast Monochrome 3D Slate & Silver Spheres Behind Glass */
+        .bg-orb {
+            position: fixed;
+            border-radius: 9999px;
+            pointer-events: none;
+            z-index: -1;
+            will-change: transform;
+        }
+
+        .orb-1 {
+            width: 350px;
+            height: 350px;
+            top: 3%;
+            left: -55px;
+            background: radial-gradient(circle at 30% 28%, #CBD5E1 0%, #94A3B8 52%, #64748B 100%);
+            border: 1.5px solid rgba(255, 255, 255, 0.85);
+            box-shadow:
+                inset -16px -16px 32px rgba(15, 23, 42, 0.22),
+                inset 12px 12px 26px rgba(255, 255, 255, 0.9),
+                0 28px 54px rgba(15, 23, 42, 0.16);
+            animation: driftOrb1 15s ease-in-out infinite alternate;
+        }
+
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            top: 20%;
+            right: -85px;
+            background: radial-gradient(circle at 28% 26%, #E2E8F0 0%, #94A3B8 55%, #475569 100%);
+            border: 1.5px solid rgba(255, 255, 255, 0.85);
+            box-shadow:
+                inset -18px -18px 36px rgba(15, 23, 42, 0.24),
+                inset 12px 12px 28px rgba(255, 255, 255, 0.92),
+                0 30px 60px rgba(15, 23, 42, 0.16);
+            animation: driftOrb2 19s ease-in-out infinite alternate;
+        }
+
+        .orb-3 {
+            width: 320px;
+            height: 320px;
+            bottom: 3%;
+            left: 12%;
+            background: radial-gradient(circle at 32% 28%, #F1F5F9 0%, #94A3B8 58%, #64748B 100%);
+            border: 1.5px solid rgba(255, 255, 255, 0.85);
+            box-shadow:
+                inset -14px -14px 30px rgba(15, 23, 42, 0.2),
+                inset 10px 10px 24px rgba(255, 255, 255, 0.9),
+                0 24px 48px rgba(15, 23, 42, 0.15);
+            animation: driftOrb3 17s ease-in-out infinite alternate;
+        }
+
+        .orb-4 {
+            width: 210px;
+            height: 210px;
+            top: 48%;
+            left: 44%;
+            background: radial-gradient(circle at 30% 25%, #FFFFFF 0%, #CBD5E1 48%, #64748B 100%);
+            border: 1.5px solid rgba(255, 255, 255, 0.9);
+            box-shadow:
+                inset -12px -12px 24px rgba(15, 23, 42, 0.22),
+                inset 10px 10px 22px rgba(255, 255, 255, 0.95),
+                0 20px 40px rgba(15, 23, 42, 0.14);
+            animation: driftOrb1 13s ease-in-out infinite alternate-reverse;
+        }
+
+        @keyframes driftOrb1 {
+            0% { transform: translate(0px, 0px) scale(1); }
+            100% { transform: translate(42px, 34px) scale(1.06); }
+        }
+
+        @keyframes driftOrb2 {
+            0% { transform: translate(0px, 0px) scale(1); }
+            100% { transform: translate(-45px, 38px) scale(1.05); }
+        }
+
+        @keyframes driftOrb3 {
+            0% { transform: translate(0px, 0px) scale(1); }
+            100% { transform: translate(36px, -34px) scale(1.07); }
+        }
+
+        /* =====================================================================
+           iOS FROSTED CRYSTAL GLASS SURFACES
+           ===================================================================== */
+        .ultra-glass {
+            background: rgba(255, 255, 255, 0.32);
+            backdrop-filter: blur(26px) saturate(160%);
+            -webkit-backdrop-filter: blur(26px) saturate(160%);
+            border: 1px solid rgba(255, 255, 255, 0.65);
+            border-top: 1.5px solid rgba(255, 255, 255, 0.95);
+            border-left: 1.5px solid rgba(255, 255, 255, 0.85);
+            box-shadow: 
+                0 20px 50px rgba(15, 23, 42, 0.10),
+                inset 0 1px 1px rgba(255, 255, 255, 0.9);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-sheen {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: radial-gradient(
+                520px circle at var(--mouse-x, 50%) var(--mouse-y, 20%),
+                rgba(255, 255, 255, 0.68),
+                transparent 60%
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+        }
+
+        .ultra-glass:hover .glass-sheen {
+            opacity: 1;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.36);
+            backdrop-filter: blur(22px) saturate(160%);
+            -webkit-backdrop-filter: blur(22px) saturate(160%);
+            border: 1px solid rgba(255, 255, 255, 0.65);
+            border-top: 1.5px solid rgba(255, 255, 255, 0.95);
+            border-left: 1.5px solid rgba(255, 255, 255, 0.85);
+            box-shadow: 
+                0 12px 28px -8px rgba(15, 23, 42, 0.08),
+                inset 0 1px 1px rgba(255, 255, 255, 0.9);
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+                        background-color 0.3s ease,
+                        box-shadow 0.35s ease;
+        }
+
+        .glass-panel:hover {
+            transform: translateY(-3px) scale(1.01);
+            background: rgba(255, 255, 255, 0.54);
+            box-shadow: 
+                0 18px 36px -10px rgba(15, 23, 42, 0.13),
+                inset 0 1.5px 1.5px rgba(255, 255, 255, 1);
+        }
+
+        .glass-pill {
+            background: rgba(255, 255, 255, 0.44);
+            backdrop-filter: blur(18px) saturate(150%);
+            -webkit-backdrop-filter: blur(18px) saturate(150%);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            border-top: 1.5px solid rgba(255, 255, 255, 0.95);
+            box-shadow: 
+                0 6px 14px -2px rgba(15, 23, 42, 0.07),
+                inset 0 1px 1px rgba(255, 255, 255, 0.92);
+            transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .glass-pill:hover {
+            background: rgba(255, 255, 255, 0.74);
+            transform: translateY(-1.5px);
+            box-shadow: 0 10px 20px -4px rgba(15, 23, 42, 0.11);
+        }
+
+        .glass-pill:active {
+            transform: scale(0.96);
+        }
+
+        /* iOS Segmented Control Switcher */
+        .ios-segmented-track {
+            background: rgba(255, 255, 255, 0.32);
+            backdrop-filter: blur(24px) saturate(160%);
+            -webkit-backdrop-filter: blur(24px) saturate(160%);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            border-top: 1.5px solid rgba(255, 255, 255, 0.95);
+            box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06), inset 0 1px 2px rgba(15, 23, 42, 0.05);
+            position: relative;
+        }
+
+        .ios-segmented-thumb {
+            position: absolute;
+            top: 4px;
+            bottom: 4px;
+            left: 4px;
+            width: calc(50% - 4px);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 1);
+            border-radius: 15px;
+            box-shadow: 0 6px 16px rgba(15, 23, 42, 0.1), inset 0 1px 1px rgba(255, 255, 255, 1);
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 0;
+        }
+
+        /* Cover Letter Interactive Spotlight Highlight */
+        .letter-segment {
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            border-radius: 16px;
+            border-left: 3px solid transparent;
+        }
+
+        .letter-segment.spotlight-active {
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.95);
+            border-left: 4px solid #0F172A;
+            padding: 0.9rem 1.1rem;
+            box-shadow: 0 12px 28px -8px rgba(15, 23, 42, 0.14), inset 0 1px 1px rgba(255, 255, 255, 1);
+        }
+
+        /* Spring Entrance Animation */
+        .spring-enter {
+            animation: springSlideUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        @keyframes springSlideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(14px) scale(0.99);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .ios-tap {
+            transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease;
+        }
+        .ios-tap:active {
+            transform: scale(0.96);
+        }
+
+        /* Clean Print / PDF Layout */
+        @media print {
+            body {
+                background: #ffffff !important;
+                color: #0f172a !important;
+            }
+            .bg-orb, .light-beam, .bg-watermark, .glass-sheen, .no-print {
+                display: none !important;
+            }
+            .ultra-glass, .glass-panel, .glass-pill {
+                background: #ffffff !important;
+                backdrop-filter: none !important;
+                border: 1px solid #cbd5e1 !important;
+                box-shadow: none !important;
+                transform: none !important;
+            }
+            .print-block {
+                display: block !important;
+            }
+            .print-break {
+                page-break-before: always;
+                margin-top: 2rem !important;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-slate-900/15 selection:text-slateInk">
+
+    <!-- Faint Background Typography + Monochrome Beams & High-Contrast 3D Spheres -->
+    <div class="bg-watermark" aria-hidden="true">
+        <span>BARISTA &bull; CAF&Eacute;</span>
+        <span class="self-end">HOSPITALITY</span>
+        <span>NAGA CITY</span>
+    </div>
+    <div class="light-beam beam-1"></div>
+    <div class="light-beam beam-2"></div>
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+    <div class="bg-orb orb-4"></div>
+
+    <!-- iOS Frosted Glass Toast Notification -->
+    <div id="ios-toast" class="no-print fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 translate-y-4 transition-all duration-300">
+        <div class="glass-pill px-5 py-3 rounded-full flex items-center gap-2.5 shadow-xl">
+            <i class="fa-solid fa-circle-check text-slateInk text-sm"></i>
+            <span id="ios-toast-msg" class="text-xs sm:text-sm font-semibold text-slateInk">Copied to clipboard</span>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 pt-8 pb-16 relative z-10">
+
+        <!-- =================================================================
+             1. GLASS HEADER WITH PROFILE PHOTO FRAME & CONTACT PILLS
+             ================================================================= -->
+        <header class="ultra-glass rounded-[32px] p-6 sm:p-8 mb-6 spring-enter">
+            <div class="glass-sheen"></div>
+            <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                
+                <!-- Left: Profile Photo Frame + Name & Title -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+                    
+                    <!-- Interactive iOS Profile Photo Slot (Loads ./profile.jpg on GitHub or click to preview) -->
+                    <div class="relative group shrink-0">
+                        <input type="file" id="photo-upload-input" accept="image/*" class="hidden" onchange="previewProfilePhoto(event)">
+                        <button type="button" onclick="document.getElementById('photo-upload-input').click()" title="Click to preview your photo (Save as profile.jpg for GitHub)" class="w-24 h-24 sm:w-28 sm:h-28 rounded-[26px] glass-panel p-1.5 flex items-center justify-center overflow-hidden relative cursor-pointer ios-tap focus:outline-none">
+                            <!-- Automatically displays profile.jpg when placed in the same GitHub folder -->
+                            <img id="profile-photo-img" src="profile.jpg" alt="Renan Alburo" class="w-full h-full object-cover rounded-[20px]" onerror="this.style.display='none'; document.getElementById('photo-placeholder').style.display='flex';">
+                            
+                            <!-- Fallback Placeholder if profile.jpg isn't added yet -->
+                            <div id="photo-placeholder" style="display:none;" class="w-full h-full rounded-[20px] bg-white/50 border border-dashed border-slate-400/70 flex flex-col items-center justify-center text-center p-2">
+                                <i class="fa-solid fa-camera text-slateInk text-lg mb-1"></i>
+                                <span class="text-[10px] font-bold text-slateInk leading-tight">Add Photo</span>
+                                <span class="text-[9px] text-slateSubtle leading-tight mt-0.5">profile.jpg</span>
+                            </div>
+
+                            <!-- Hover Overlay -->
+                            <div class="no-print absolute inset-1.5 rounded-[20px] bg-slate-900/55 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white">
+                                <i class="fa-solid fa-camera text-sm mb-1"></i>
+                                <span class="text-[10px] font-semibold">Change Photo</span>
+                            </div>
+                        </button>
+                    </div>
+
+                    <!-- Name, Role & Location -->
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-pill text-xs font-semibold text-slateInk mb-2.5">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                            <span>Entry-Level Barista Applicant &bull; Eager to Train</span>
+                        </div>
+                        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slateInk leading-tight">
+                            Renan Alburo
+                        </h1>
+                        <p class="text-sm sm:text-base font-medium text-slateBody mt-1">
+                            Aspiring Barista &amp; Hospitality Associate &bull; 4th Year Student, University of Nueva Caceres
+                        </p>
+                        <p class="text-xs sm:text-sm text-slateSubtle mt-1.5 flex items-center gap-1.5">
+                            <i class="fa-solid fa-location-dot text-slateInk"></i>
+                            <span>In front of Parochial School, Ateneo Ave., Naga City</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right: Interactive Contact & Action Buttons -->
+                <div class="flex flex-col sm:flex-row md:flex-col items-stretch sm:items-center md:items-end gap-2.5 shrink-0">
+                    <a href="tel:09670492051" class="glass-pill px-4 py-2 rounded-2xl text-xs sm:text-sm font-semibold text-slateInk flex items-center justify-center md:justify-end gap-2">
+                        <i class="fa-solid fa-phone text-slateInk"></i>
+                        <span>09670492051</span>
+                    </a>
+                    <a href="mailto:renanalburo2004@gmail.com" class="glass-pill px-4 py-2 rounded-2xl text-xs sm:text-sm font-semibold text-slateInk flex items-center justify-center md:justify-end gap-2">
+                        <i class="fa-solid fa-envelope text-slateInk"></i>
+                        <span>renanalburo2004@gmail.com</span>
+                    </a>
+                    <div class="no-print flex items-center gap-2 mt-0.5">
+                        <button type="button" onclick="copyContactInfo()" class="glass-pill px-3.5 py-2 rounded-xl text-xs font-semibold text-slateInk flex items-center gap-1.5 cursor-pointer">
+                            <i class="fa-regular fa-copy"></i>
+                            <span>Copy Info</span>
+                        </button>
+                        <button type="button" onclick="window.print()" class="ios-tap px-4 py-2 rounded-xl text-xs font-semibold text-white bg-slateInk hover:bg-slate-800 shadow-md flex items-center gap-1.5 cursor-pointer">
+                            <i class="fa-solid fa-print"></i>
+                            <span>Save PDF</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <!-- =================================================================
+             2. iOS SEGMENTED CONTROL (COVER LETTER FIRST -> RESUME DETAILS)
+             ================================================================= -->
+        <nav class="no-print mb-6 flex justify-center">
+            <div class="ios-segmented-track p-1 rounded-[19px] w-full max-w-md grid grid-cols-2">
+                <div id="segmented-thumb" class="ios-segmented-thumb"></div>
+                <button type="button" id="tab-letter" onclick="switchView('letter')" class="relative z-10 py-2.5 px-4 text-xs sm:text-sm font-bold text-slateInk flex items-center justify-center gap-2 cursor-pointer transition-colors">
+                    <i class="fa-solid fa-envelope-open-text"></i>
+                    <span>1. Cover Letter</span>
+                </button>
+                <button type="button" id="tab-resume" onclick="switchView('resume')" class="relative z-10 py-2.5 px-4 text-xs sm:text-sm font-bold text-slateSubtle flex items-center justify-center gap-2 cursor-pointer transition-colors">
+                    <i class="fa-solid fa-id-card"></i>
+                    <span>2. Resume Details</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- =================================================================
+             3. SECTION 1: INTERACTIVE COVER LETTER (SHOWN FIRST)
+             ================================================================= -->
+        <section id="view-letter" class="print-block ultra-glass rounded-[32px] p-6 sm:p-10 spring-enter">
+            <div class="glass-sheen"></div>
+            <div class="relative z-10">
+                
+                <!-- Top Bar: Letter Title + Copy Button -->
+                <div class="flex flex-wrap items-center justify-between gap-3 pb-5 mb-6 border-b border-white/60">
+                    <div>
+                        <span class="text-[11px] font-bold uppercase tracking-widest text-slateSubtle">Application Letter</span>
+                        <h2 class="text-xl sm:text-2xl font-extrabold text-slateInk mt-0.5">To the Hiring Manager &amp; Caf&eacute; Team</h2>
+                    </div>
+                    <button type="button" onclick="copyCoverLetter()" class="no-print glass-pill px-4 py-2 rounded-2xl text-xs font-semibold text-slateInk flex items-center gap-2 cursor-pointer">
+                        <i class="fa-regular fa-clipboard"></i>
+                        <span>Copy Letter</span>
+                    </button>
+                </div>
+
+                <!-- Interactive Strength Spotlight Pills -->
+                <div class="no-print mb-6">
+                    <p class="text-xs font-semibold text-slateSubtle mb-2.5 flex items-center gap-1.5">
+                        <i class="fa-solid fa-sparkles text-slateInk"></i>
+                        <span>Tap a strength below to highlight it in my letter:</span>
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <button type="button" onclick="spotlightParagraph('hospitality', this)" class="spotlight-chip glass-pill px-3.5 py-1.5 rounded-full text-xs font-semibold text-slateInk cursor-pointer">
+                            <i class="fa-solid fa-heart mr-1"></i> Warm Hospitality &amp; Kindness
+                        </button>
+                        <button type="button" onclick="spotlightParagraph('learning', this)" class="spotlight-chip glass-pill px-3.5 py-1.5 rounded-full text-xs font-semibold text-slateInk cursor-pointer">
+                            <i class="fa-solid fa-mug-hot mr-1"></i> Eager to Learn from Scratch
+                        </button>
+                        <button type="button" onclick="spotlightParagraph('adaptability', this)" class="spotlight-chip glass-pill px-3.5 py-1.5 rounded-full text-xs font-semibold text-slateInk cursor-pointer">
+                            <i class="fa-solid fa-bolt mr-1"></i> Fast Adaptability &amp; Multitasking
+                        </button>
+                        <button type="button" onclick="spotlightParagraph('communication', this)" class="spotlight-chip glass-pill px-3.5 py-1.5 rounded-full text-xs font-semibold text-slateInk cursor-pointer">
+                            <i class="fa-solid fa-comments mr-1"></i> Communication &amp; Negotiation
+                        </button>
+                    </div>
+
+                    <!-- Dynamic Insight Banner -->
+                    <div id="spotlight-banner" class="hidden mt-3 glass-panel rounded-2xl px-4 py-3 text-xs sm:text-sm text-slateInk flex items-center justify-between gap-3">
+                        <div class="flex items-center gap-2.5">
+                            <i class="fa-solid fa-circle-info text-slateInk"></i>
+                            <span id="spotlight-banner-text" class="font-medium"></span>
+                        </div>
+                        <button type="button" onclick="clearSpotlight()" class="text-xs font-bold text-slateSubtle hover:text-slateInk underline shrink-0 cursor-pointer">
+                            Reset
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Cover Letter Body -->
+                <div id="cover-letter-content" class="space-y-4 text-sm sm:text-[15.5px] leading-relaxed text-slateBody">
+                    <p class="font-semibold text-slateInk">Dear Hiring Manager,</p>
+
+                    <p id="seg-hospitality" class="letter-segment">
+                        I am writing to express my sincere interest in joining your caf&eacute; team as a <strong>Barista</strong>. As someone who genuinely enjoys welcoming people with kindness, patience, and a positive attitude, I believe great coffee tastes even better when served with warm, attentive hospitality.
+                    </p>
+
+                    <p id="seg-learning" class="letter-segment">
+                        While I do not have formal barista work experience yet, I strongly believe that every craft can be mastered with dedication, humility, and hands-on practice. I am eager to learn everything from the ground up—from dialing in espresso shots, steaming silky microfoam, and following exact drink recipes to keeping the bar spotless and organized.
+                    </p>
+
+                    <p id="seg-adaptability" class="letter-segment">
+                        Currently a 4th-year student at the <strong>University of Nueva Caceres</strong> with a light academic load, I have developed strong multitasking habits and fast adaptability in dynamic environments. I stay calm under pressure, pick up new routines quickly, and am ready to support the team wherever I am needed—whether taking orders at the counter, prepping ingredients, or keeping service flowing smoothly during busy rushes.
+                    </p>
+
+                    <p id="seg-communication" class="letter-segment">
+                        One of my strongest assets is my communication and interpersonal skill. I know how to listen actively to customers, recommend menu options clearly, negotiate solutions calmly if an order needs adjustment, and collaborate respectfully with fellow teammates.
+                    </p>
+
+                    <p>
+                        Thank you very much for considering my application. I would be grateful for the opportunity to meet in person, share my enthusiasm, and show how quickly I can grow into a reliable member of your team.
+                    </p>
+
+                    <div class="pt-3">
+                        <p class="text-slateBody">Warm regards,</p>
+                        <p class="text-base sm:text-lg font-extrabold text-slateInk mt-1">Renan Alburo</p>
+                        <p class="text-xs text-slateSubtle">09670492051 &bull; renanalburo2004@gmail.com</p>
+                    </div>
+                </div>
+
+                <!-- Bottom CTA Button to Resume Details -->
+                <div class="no-print mt-8 pt-6 border-t border-white/60 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <p class="text-xs text-slateSubtle text-center sm:text-left">
+                        Ready to see my core strengths, education, and personal profile?
+                    </p>
+                    <button type="button" onclick="switchView('resume')" class="ios-tap w-full sm:w-auto px-6 py-3 rounded-2xl text-xs sm:text-sm font-bold text-white bg-slateInk hover:bg-slate-800 shadow-lg flex items-center justify-center gap-2 cursor-pointer">
+                        <span>Next: View Resume Details</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- =================================================================
+             4. SECTION 2: RESUME DETAILS
+             ================================================================= -->
+        <section id="view-resume" class="hidden print-block print-break space-y-6 spring-enter">
+            
+            <!-- Personal Profile & Why Hire Me Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <!-- Personal Profile Card -->
+                <div class="ultra-glass rounded-[28px] p-6 sm:p-7">
+                    <div class="glass-sheen"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-2xl glass-pill flex items-center justify-center text-slateInk">
+                                <i class="fa-solid fa-user-check"></i>
+                            </div>
+                            <div>
+                                <span class="text-[11px] font-bold uppercase tracking-wider text-slateSubtle">About Me</span>
+                                <h3 class="text-lg font-extrabold text-slateInk">Personal Profile</h3>
+                            </div>
+                        </div>
+                        <p class="text-sm text-slateBody leading-relaxed">
+                            Kind, approachable, and fast-learning aspiring Barista based in Naga City. Brings strong interpersonal communication, calm negotiation skills, and natural multitasking ability. Committed to delivering friendly customer service and mastering coffee preparation standards through hands-on training.
+                        </p>
+                        <div class="mt-4 pt-4 border-t border-white/60 grid grid-cols-2 gap-3 text-xs">
+                            <div class="glass-panel rounded-xl p-3">
+                                <span class="text-slateSubtle block">Location</span>
+                                <span class="font-bold text-slateInk">Ateneo Ave., Naga City</span>
+                            </div>
+                            <div class="glass-panel rounded-xl p-3">
+                                <span class="text-slateSubtle block">Training Mindset</span>
+                                <span class="font-bold text-slateInk">100% Coachable</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Why Hire Me Card -->
+                <div class="ultra-glass rounded-[28px] p-6 sm:p-7">
+                    <div class="glass-sheen"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-2xl glass-pill flex items-center justify-center text-slateInk">
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <div>
+                                <span class="text-[11px] font-bold uppercase tracking-wider text-slateSubtle">Value to Your Caf&eacute;</span>
+                                <h3 class="text-lg font-extrabold text-slateInk">Why Hire Me?</h3>
+                            </div>
+                        </div>
+                        <ul class="space-y-3 text-sm text-slateBody">
+                            <li class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-circle-check text-slateInk mt-1 shrink-0"></i>
+                                <span><strong>Zero Ego, High Eagerness:</strong> Ready to learn your exact recipes, hygiene rules, and workflow from day one.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-circle-check text-slateInk mt-1 shrink-0"></i>
+                                <span><strong>Customer-First Warmth:</strong> Naturally polite, patient, and skilled at handling requests or concerns smoothly.</span>
+                            </li>
+                            <li class="flex items-start gap-2.5">
+                                <i class="fa-solid fa-circle-check text-slateInk mt-1 shrink-0"></i>
+                                <span><strong>Quick &amp; Reliable Hands:</strong> Comfortable juggling POS order-taking, counter cleanliness, and prep simultaneously.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Core Hospitality & Barista-Ready Strengths -->
+            <div class="ultra-glass rounded-[28px] p-6 sm:p-8">
+                <div class="glass-sheen"></div>
+                <div class="relative z-10">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-10 h-10 rounded-2xl glass-pill flex items-center justify-center text-slateInk">
+                            <i class="fa-solid fa-mug-saucer"></i>
+                        </div>
+                        <div>
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-slateSubtle">Key Competencies</span>
+                            <h3 class="text-lg sm:text-xl font-extrabold text-slateInk">Hospitality &amp; Work Strengths</h3>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="glass-panel rounded-2xl p-4">
+                            <div class="flex items-center gap-2.5 mb-2">
+                                <i class="fa-solid fa-face-smile text-slateInk"></i>
+                                <h4 class="font-bold text-sm text-slateInk">Kind &amp; Welcoming Service</h4>
+                            </div>
+                            <p class="text-xs text-slateBody leading-relaxed">
+                                Creates a warm, comfortable atmosphere that makes first-time guests and regulars feel valued.
+                            </p>
+                        </div>
+
+                        <div class="glass-panel rounded-2xl p-4">
+                            <div class="flex items-center gap-2.5 mb-2">
+                                <i class="fa-solid fa-handshake text-slateInk"></i>
+                                <h4 class="font-bold text-sm text-slateInk">Communication &amp; Negotiation</h4>
+                            </div>
+                            <p class="text-xs text-slateBody leading-relaxed">
+                                Listens attentively, clarifies drink customizations accurately, and resolves misunderstandings politely.
+                            </p>
+                        </div>
+
+                        <div class="glass-panel rounded-2xl p-4">
+                            <div class="flex items-center gap-2.5 mb-2">
+                                <i class="fa-solid fa-layer-group text-slateInk"></i>
+                                <h4 class="font-bold text-sm text-slateInk">Multitasking Under Pressure</h4>
+                            </div>
+                            <p class="text-xs text-slateBody leading-relaxed">
+                                Stays organized and focused while balancing customer orders, drink prep, and workspace tidiness.
+                            </p>
+                        </div>
+
+                        <div class="glass-panel rounded-2xl p-4">
+                            <div class="flex items-center gap-2.5 mb-2">
+                                <i class="fa-solid fa-arrows-rotate text-slateInk"></i>
+                                <h4 class="font-bold text-sm text-slateInk">Fast Environment Adaptability</h4>
+                            </div>
+                            <p class="text-xs text-slateBody leading-relaxed">
+                                Adjusts rapidly to busy peak hours, new equipment, and changing team priorities.
+                            </p>
+                        </div>
+
+                        <div class="glass-panel rounded-2xl p-4">
+                            <div class="flex items-center gap-2.5 mb-2">
+                                <i class="fa-solid fa-cash-register text-slateInk"></i>
+                                <h4 class="font-bold text-sm text-slateInk">Quick POS &amp; Counter Readiness</h4>
+                            </div>
+                            <p class="text-xs text-slateBody leading-relaxed">
+                                Tech-comfortable and fast at learning digital Point-of-Sale terminals, cash handling, and order queues.
+                            </p>
+                        </div>
+
+                        <div class="glass-panel rounded-2xl p-4">
+                            <div class="flex items-center gap-2.5 mb-2">
+                                <i class="fa-solid fa-broom text-slateInk"></i>
+                                <h4 class="font-bold text-sm text-slateInk">Cleanliness &amp; Teamwork</h4>
+                            </div>
+                            <p class="text-xs text-slateBody leading-relaxed">
+                                Practices "clean-as-you-go" habits and proactively assists coworkers to keep operations smooth.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education Card -->
+            <div class="ultra-glass rounded-[28px] p-6 sm:p-8">
+                <div class="glass-sheen"></div>
+                <div class="relative z-10">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-2xl glass-pill flex items-center justify-center text-slateInk">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-slateSubtle">Academic Background</span>
+                            <h3 class="text-lg sm:text-xl font-extrabold text-slateInk">Education</h3>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div>
+                            <h4 class="text-base font-extrabold text-slateInk">Bachelor of Science in Information Technology (4th Year)</h4>
+                            <p class="text-sm font-medium text-slateBody mt-0.5">University of Nueva Caceres &bull; Naga City, Camarines Sur</p>
+                            <p class="text-xs text-slateSubtle mt-1">Light final-year academic load with no minor subjects remaining.</p>
+                        </div>
+                        <span class="glass-pill px-3.5 py-1.5 rounded-full text-xs font-bold text-slateInk self-start sm:self-center shrink-0">
+                            4th Year Student
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Navigation Back to Cover Letter -->
+            <div class="no-print flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+                <button type="button" onclick="switchView('letter')" class="glass-pill w-full sm:w-auto px-5 py-3 rounded-2xl text-xs sm:text-sm font-bold text-slateInk flex items-center justify-center gap-2 cursor-pointer">
+                    <i class="fa-solid fa-arrow-left"></i>
+                    <span>Back to Cover Letter</span>
+                </button>
+                <div class="flex items-center gap-2.5 w-full sm:w-auto">
+                    <button type="button" onclick="copyContactInfo()" class="glass-pill flex-1 sm:flex-initial px-5 py-3 rounded-2xl text-xs sm:text-sm font-bold text-slateInk flex items-center justify-center gap-2 cursor-pointer">
+                        <i class="fa-regular fa-copy"></i>
+                        <span>Copy Contact</span>
+                    </button>
+                    <button type="button" onclick="window.print()" class="ios-tap flex-1 sm:flex-initial px-6 py-3 rounded-2xl text-xs sm:text-sm font-bold text-white bg-slateInk hover:bg-slate-800 shadow-lg flex items-center justify-center gap-2 cursor-pointer">
+                        <i class="fa-solid fa-file-pdf"></i>
+                        <span>Print / Save PDF</span>
+                    </button>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Minimal Footer -->
+        <footer class="no-print mt-10 text-center text-xs text-slateSubtle">
+            <p>Renan Alburo &bull; Naga City &bull; Interactive Application &amp; Resume</p>
+        </footer>
+
+    </main>
+
+    <!-- =====================================================================
+         INTERACTIVE JAVASCRIPT
+         ===================================================================== -->
+    <script>
+        // 1. Cursor-Follow Specular Glass Sheen Effect
+        document.querySelectorAll('.ultra-glass').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        // 2. View Switcher (Cover Letter <-> Resume Details)
+        function switchView(target) {
+            const letterView = document.getElementById('view-letter');
+            const resumeView = document.getElementById('view-resume');
+            const thumb = document.getElementById('segmented-thumb');
+            const tabLetter = document.getElementById('tab-letter');
+            const tabResume = document.getElementById('tab-resume');
+
+            if (target === 'letter') {
+                letterView.classList.remove('hidden');
+                resumeView.classList.add('hidden');
+                thumb.style.transform = 'translateX(0%)';
+                tabLetter.classList.replace('text-slateSubtle', 'text-slateInk');
+                tabResume.classList.replace('text-slateInk', 'text-slateSubtle');
+            } else {
+                resumeView.classList.remove('hidden');
+                letterView.classList.add('hidden');
+                thumb.style.transform = 'translateX(100%)';
+                tabResume.classList.replace('text-slateSubtle', 'text-slateInk');
+                tabLetter.classList.replace('text-slateInk', 'text-slateSubtle');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 3. Cover Letter Interactive Strength Spotlight
+        const spotlightNotes = {
+            hospitality: 'Warm Hospitality: Focused on making every guest feel welcomed with genuine kindness and patience.',
+            learning: 'Coachable & Eager: Ready to learn espresso calibration, milk steaming, and café recipes from scratch.',
+            adaptability: 'Fast Adaptability: Experienced in multitasking and staying composed during fast-paced rushes.',
+            communication: 'Clear Communication: Skilled at active listening, polite negotiation, and smooth teamwork.'
+        };
+
+        let activeSpotlightKey = null;
+
+        function spotlightParagraph(key, btnEl) {
+            const banner = document.getElementById('spotlight-banner');
+            const bannerText = document.getElementById('spotlight-banner-text');
+
+            if (activeSpotlightKey === key) {
+                clearSpotlight();
+                return;
+            }
+
+            clearSpotlight(false);
+            activeSpotlightKey = key;
+
+            const segment = document.getElementById(`seg-${key}`);
+            if (segment) {
+                segment.classList.add('spotlight-active');
+                segment.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            document.querySelectorAll('.spotlight-chip').forEach(chip => {
+                chip.classList.remove('ring-2', 'ring-slateInk', 'bg-white/80');
+            });
+            if (btnEl) {
+                btnEl.classList.add('ring-2', 'ring-slateInk', 'bg-white/80');
+            }
+
+            bannerText.textContent = spotlightNotes[key] || '';
+            banner.classList.remove('hidden');
+        }
+
+        function clearSpotlight(resetKey = true) {
+            if (resetKey) activeSpotlightKey = null;
+            document.querySelectorAll('.letter-segment').forEach(seg => {
+                seg.classList.remove('spotlight-active');
+            });
+            document.querySelectorAll('.spotlight-chip').forEach(chip => {
+                chip.classList.remove('ring-2', 'ring-slateInk', 'bg-white/80');
+            });
+            document.getElementById('spotlight-banner').classList.add('hidden');
+        }
+
+        // 4. Instant Profile Photo Preview (and auto-fallback if profile.jpg is uploaded on GitHub)
+        function previewProfilePhoto(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = document.getElementById('profile-photo-img');
+                const placeholder = document.getElementById('photo-placeholder');
+                img.src = e.target.result;
+                img.style.display = 'block';
+                placeholder.style.display = 'none';
+                showToast('Photo preview updated! Save as profile.jpg on GitHub.');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // 5. Copy Helpers + iOS Toast Notification
+        let toastTimer = null;
+        function showToast(message) {
+            const toast = document.getElementById('ios-toast');
+            const msgEl = document.getElementById('ios-toast-msg');
+            msgEl.textContent = message;
+            toast.classList.remove('opacity-0', 'translate-y-4');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'translate-y-4');
+            }, 2600);
+        }
+
+        function copyTextFallback(text, successMessage) {
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(() => showToast(successMessage));
+            } else {
+                const ta = document.createElement('textarea');
+                ta.value = text;
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                showToast(successMessage);
+            }
+        }
+
+        function copyContactInfo() {
+            const info = `Renan Alburo\nAddress: In front of Parochial School, Ateneo Ave., Naga City\nPhone: 09670492051\nEmail: renanalburo2004@gmail.com`;
+            copyTextFallback(info, 'Contact details copied to clipboard!');
+        }
+
+        function copyCoverLetter() {
+            const letterEl = document.getElementById('cover-letter-content');
+            copyTextFallback(letterEl.innerText.trim(), 'Cover letter copied to clipboard!');
+        }
+    </script>
+</body>
+</html>
